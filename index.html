@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajedrez IA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="brand-icon">♔</span>
+        <h1>Chess<span class="brand-accent">AI</span></h1>
+      </div>
+
+      <div class="panel">
+        <label class="panel-label">Dificultad</label>
+        <div class="difficulty-grid">
+          <button class="diff-btn active" data-level="1">
+            <span class="diff-icon">🌱</span>
+            <span class="diff-name">Novato</span>
+          </button>
+          <button class="diff-btn" data-level="2">
+            <span class="diff-icon">🎯</span>
+            <span class="diff-name">Principiante</span>
+          </button>
+          <button class="diff-btn" data-level="3">
+            <span class="diff-icon">⚔️</span>
+            <span class="diff-name">Intermedio</span>
+          </button>
+          <button class="diff-btn" data-level="4">
+            <span class="diff-icon">🔥</span>
+            <span class="diff-name">Avanzado</span>
+          </button>
+          <button class="diff-btn" data-level="5">
+            <span class="diff-icon">👑</span>
+            <span class="diff-name">Maestro</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="panel status-panel">
+        <label class="panel-label">Estado</label>
+        <div class="turn-indicator">
+          <div class="turn-dot" id="turnDot"></div>
+          <span id="turnText">Tu turno (Blancas)</span>
+        </div>
+        <div id="statusMsg" class="status-msg"></div>
+      </div>
+
+      <div class="panel captures-panel">
+        <label class="panel-label">Capturas</label>
+        <div class="captures-row">
+          <span class="cap-label">Blancas:</span>
+          <div id="whiteCaps" class="cap-pieces"></div>
+        </div>
+        <div class="captures-row">
+          <span class="cap-label">Negras:</span>
+          <div id="blackCaps" class="cap-pieces"></div>
+        </div>
+      </div>
+
+      <button id="restartBtn" class="restart-btn">
+        ↺ Reiniciar Partida
+      </button>
+    </aside>
+
+    <main class="board-area">
+      <div class="board-wrapper">
+        <div class="coords-top">
+          <span>a</span><span>b</span><span>c</span><span>d</span>
+          <span>e</span><span>f</span><span>g</span><span>h</span>
+        </div>
+        <div class="board-row">
+          <div class="coords-side" id="coordsLeft"></div>
+          <div id="board" class="board"></div>
+          <div class="coords-side" id="coordsRight"></div>
+        </div>
+        <div class="coords-bottom">
+          <span>a</span><span>b</span><span>c</span><span>d</span>
+          <span>e</span><span>f</span><span>g</span><span>h</span>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Promotion modal -->
+  <div id="promoModal" class="promo-modal hidden">
+    <div class="promo-box">
+      <h3>Promoción de Peón</h3>
+      <div class="promo-pieces">
+        <button class="promo-btn" data-piece="q">♛</button>
+        <button class="promo-btn" data-piece="r">♜</button>
+        <button class="promo-btn" data-piece="b">♝</button>
+        <button class="promo-btn" data-piece="n">♞</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Game over overlay -->
+  <div id="gameOverlay" class="game-overlay hidden">
+    <div class="game-over-box">
+      <div class="go-icon" id="goIcon"></div>
+      <h2 id="goTitle"></h2>
+      <p id="goMsg"></p>
+      <button id="goRestart" class="restart-btn">Nueva Partida</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
